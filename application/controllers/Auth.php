@@ -47,6 +47,7 @@ class Auth extends CI_Controller {
 	}
 
 	public function registration(){
+		var_dump( $this->input->post('name'));
 		$this->form_validation->set_rules('name','Name','required|trim');
 		$this->form_validation->set_rules('email','Email','required|trim|valid_email|is_unique[users.email]',[
 			'is_unique' => "Email sudah digunakan!",
@@ -63,7 +64,7 @@ class Auth extends CI_Controller {
 			$this->load->view('templates/footer');
 		}else{
 			$data = [
-				'name' => $this->input->post('nama'),
+				'name' => $this->input->post('name'),
 				'email' => $this->input->post('email'),
 				'password' => password_hash($this->input->post('password1'),PASSWORD_DEFAULT),
 				'role' => 'user',
